@@ -72,7 +72,7 @@ const GameBoard = () => {
                     ship.coords[i] = `${gameBoard[col][col - i]}`;
                 }
             }
-        } else if (choice > 1) {
+        } else if (choice > 1) { //vertical positioning
             for (let i = 0; i < ship.shipLength; i++) {
                 if (row <= 7) {
                     gameBoard[row + i][col] = 'ship';
@@ -85,11 +85,32 @@ const GameBoard = () => {
         }
     }
 
+    const receiveAttack = (coordA, coordB) => {
+        //get coordinates of hit cell
+        //check array gameBoard if there is a ship or empty
+        // if empty mark missed hit X and return 
+        //else check which ship got hit
+        //mark ship as hit
+        //mark cell as good hit
+        //check if ship is sunk
+        //return hit to board
+    }
+    const getCoords = (e) => {
+        //creates separate coordinates of cell hit
+        const coords = e.target.dataset.indexNumber;
+        const coordA = coords.slice(0, 1);
+        const coordB = coords.slice(2);
+        receiveAttack(coordA, coordB);
+    }
+
     return {
         //
         gameBoard,
         gameShips,
         getShip,
+        generateShipLocation,
+        getCoords,
+
     }
 }
 

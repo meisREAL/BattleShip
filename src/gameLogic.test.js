@@ -37,4 +37,6 @@ test('ship isSunk 2', () => {
     // expect(testShip.shipArr).toStrictEqual(['X', 'X', 'X', 'X'])
     expect(testShip.isSunk).toBe(true);
 })
+//--------------------------------------------------------------------------------------------------
+
 
