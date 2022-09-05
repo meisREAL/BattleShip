@@ -105,6 +105,7 @@ const GameBoard = () => {
                 for (let j = 0; j < gameShips[i].coords; j++) {
                     if (gameShips[i].coords[j] == `${coordA}-${coordB}`) {
                         gameShips[i].shipHits.push('HIT');
+                        gameShips[i].checkIfSunk();
                         break;
                     }
                 }

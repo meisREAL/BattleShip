@@ -1,13 +1,14 @@
 import { GameBoard } from "./gameLogic";
 
 
+// const board = GameBoard();
+const generateGameBoard = {
+    // const board = GameBoard();
 
-const generateGameBoard = (function () {
-    const board = GameBoard();
-    const content = document.getElementById('content');
 
-    const gameBoard = () => {
+    gameBoard: function () {
         //create 10x10 grid
+        const content = document.getElementById('content');
         const board = document.createElement('div');
         board.setAttribute('id', 'board');
 
@@ -21,17 +22,17 @@ const generateGameBoard = (function () {
         }
 
         content.appendChild(board);
-    }
+    },
 
-    const makeListeners = () => {
+    makeListeners: function () {
         //creates event listeners on the board
         const cells = document.querySelectorAll('.cell');
         for (let i = 0; i < cells.length; i++) {
             cells[i].addEventListener('click', board.getCoords)
         }
-    }
+    },
 
-    const markOnBoard = (event) => {
+    markOnBoard: function () {
         //calls stuff on GameBoard object
         //checks GameBoard array 
         //marks cell
@@ -39,12 +40,12 @@ const generateGameBoard = (function () {
 
     }
 
-    return {
-        gameBoard,
-        makeListeners,
-        markOnBoard
-    }
-})();
+    // return {
+    //     gameBoard,
+    //     makeListeners,
+    //     markOnBoard
+    // }
+};
 
 
 
