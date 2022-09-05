@@ -1,4 +1,4 @@
-
+// import { generateGameBoard } from "./DOM";
 
 const Ship = (length) => {
     let isSunk = false;
@@ -28,6 +28,7 @@ const Ship = (length) => {
 };
 
 const GameBoard = () => {
+
     const gameBoard = [
         [[''], [''], [''], [''], [''], [''], [''], [''], [''], ['']], //this is game board made of array
         [[''], [''], [''], [''], [''], [''], [''], [''], [''], ['']], //this gameBoard will save missed hits
@@ -66,10 +67,10 @@ const GameBoard = () => {
             for (let i = 0; i < ship.shipLength; i++) {
                 if (col <= 7) {
                     gameBoard[row][col + i] = 'ship';
-                    ship.coords[i] = `${gameBoard[row][col + i]}`;
+                    ship.coords[i] = `${[row]}-${[col + i]}`;
                 } else {
                     gameBoard[col][col - i] = 'ship';
-                    ship.coords[i] = `${gameBoard[col][col - i]}`;
+                    ship.coords[i] = `${[col]}-${[col - i]}`;
                 }
             }
         } else if (choice > 1) { //vertical positioning
@@ -94,6 +95,21 @@ const GameBoard = () => {
         //mark cell as good hit
         //check if ship is sunk
         //return hit to board
+
+        if (gameBoard[coordA][coordB] == '') {
+            gameBoard[coordA][coordB] = 'miss';
+        } else if (gameBoard[coordA][coordB] == 'miss') {
+            alert('You already shot here');
+        } else if (gameBoard[coordA][coordB] == 'ship') {
+            for (let i = 0; i < gameShips.length; i++) {
+                for (let j = 0; j < gameShips[i].coords; j++) {
+                    if (gameShips[i].coords[j] == `${coordA}-${coordB}`) {
+                        gameShips[i].shipHits.push('HIT');
+                        break;
+                    }
+                }
+            }
+        }
     }
     const getCoords = (e) => {
         //creates separate coordinates of cell hit

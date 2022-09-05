@@ -1,8 +1,9 @@
 import { GameBoard } from "./gameLogic";
 
-const board = GameBoard();
+
 
 const generateGameBoard = (function () {
+    const board = GameBoard();
     const content = document.getElementById('content');
 
     const gameBoard = () => {
@@ -30,12 +31,22 @@ const generateGameBoard = (function () {
         }
     }
 
+    const markOnBoard = (event) => {
+        //calls stuff on GameBoard object
+        //checks GameBoard array 
+        //marks cell
+        board.getCoords(event);
+
+    }
+
     return {
         gameBoard,
         makeListeners,
-
+        markOnBoard
     }
 })();
+
+
 
 export {
     generateGameBoard,
