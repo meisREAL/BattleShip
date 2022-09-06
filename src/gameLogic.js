@@ -1,7 +1,7 @@
 import { generateGameBoard, game } from "./DOM";
 
 const Ship = (length) => {
-    let isSunk = false;
+    // var isSunk = false;
     const shipLength = length;
     const shipHits = [] //place to track hits
     const coords = ['', '', '']
@@ -11,16 +11,15 @@ const Ship = (length) => {
         checkIfSunk();
     }
     const checkIfSunk = () => {
-        // (shipHits.length >= shipLength) ? isSunk = true : isSunk = false;
         if (shipHits.length >= shipLength) {
-            isSunk = true;
+            alert('You sank a ship!');
         }
     }
 
     return {
         shipLength,
         hit,
-        isSunk,
+        // isSunk,
         shipLength,
         shipHits,
         coords,
@@ -108,8 +107,8 @@ const GameBoard = () => {
             for (let i = 0; i < gameShips.length; i++) {
                 for (let j = 0; j < gameShips[i].coords.length; j++) {
                     if (gameShips[i].coords[j] == `${coordA}-${coordB}`) {
-                        gameShips[i].shipHits.push('HIT');
-                        gameShips[i].checkIfSunk();
+                        gameShips[i].hit('HIT');
+                        // gameShips[i].checkIfSunk();
                         break;
                     }
                 }
