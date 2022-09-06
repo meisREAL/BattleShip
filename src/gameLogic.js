@@ -1,4 +1,4 @@
-// import { generateGameBoard } from "./DOM";
+import { generateGameBoard, game } from "./DOM";
 
 const Ship = (length) => {
     let isSunk = false;
@@ -96,8 +96,11 @@ const GameBoard = () => {
         //check if ship is sunk
         //return hit to board
 
+        // console.log(coordA, coordB)
+
         if (gameBoard[coordA][coordB] == '') {
             gameBoard[coordA][coordB] = 'miss';
+            game.markOnBoard(coordA, coordB);
         } else if (gameBoard[coordA][coordB] == 'miss') {
             alert('You already shot here');
         } else if (gameBoard[coordA][coordB] == 'ship') {
@@ -112,6 +115,7 @@ const GameBoard = () => {
             }
         }
     }
+
     const getCoords = (e) => {
         //creates separate coordinates of cell hit
         const coords = e.target.dataset.indexNumber;
@@ -131,9 +135,10 @@ const GameBoard = () => {
     }
 }
 
+const boardStuff = GameBoard();
 
 export {
     Ship,
     GameBoard,
-
+    boardStuff,
 }
