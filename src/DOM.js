@@ -32,15 +32,20 @@ const generateGameBoard = () => {
 
     const markOnBoard = (coordA, coordB) => {
         const hitCell = document.getElementById(`${coordA}${coordB}`)
-        console.log(hitCell);
-        console.log(coordA, coordB);
-        hitCell.textContent = 'X';
+        hitCell.textContent = 'MISS';
+    }
+
+    const markHitOnBoard = (coordA, coordB) => {
+        const hitCell = document.getElementById(`${coordA}${coordB}`)
+        hitCell.textContent = 'HIT';
+        hitCell.style.background = 'red'
     }
 
     return {
         gameBoard,
         makeListeners,
         markOnBoard,
+        markHitOnBoard
     }
 };
 

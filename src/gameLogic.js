@@ -50,7 +50,8 @@ const GameBoard = () => {
     const getShip = (length) => {  //communicates with Ship for new object creation
         const gameShip = Ship(length);
         saveShips(gameShip);
-        placeShip(gameShip)
+        console.log(gameShips);
+        generateShipLocation(gameShip);
     }
 
     const placeShip = (ship) => {
@@ -61,26 +62,26 @@ const GameBoard = () => {
     const generateShipLocation = (ship) => {
         const col = Math.floor(Math.random() * 9);
         const row = Math.floor(Math.random() * 9);
-        const choice = Math.floor(Math.random * 2);
+        const choice = Math.floor(Math.random() * 2);
 
-        if (choice <= 1) { //horizontal positioning 
+        if (choice < 1) { //horizontal positioning 
             for (let i = 0; i < ship.shipLength; i++) {
                 if (col <= 7) {
                     gameBoard[row][col + i] = 'ship';
                     ship.coords[i] = `${[row]}-${[col + i]}`;
                 } else {
-                    gameBoard[col][col - i] = 'ship';
-                    ship.coords[i] = `${[col]}-${[col - i]}`;
+                    gameBoard[row][col - i] = 'ship';
+                    ship.coords[i] = `${[row]}-${[col - i]}`;
                 }
             }
-        } else if (choice > 1) { //vertical positioning
+        } else if (choice >= 1) { //vertical positioning
             for (let i = 0; i < ship.shipLength; i++) {
                 if (row <= 7) {
                     gameBoard[row + i][col] = 'ship';
-                    ship.coords[i] = `${gameBoard[row + i][col]}`;
+                    ship.coords[i] = `${[row + i]}-${[col]}`;
                 } else {
                     gameBoard[row - i][col] = 'ship';
-                    ship.coords[i] = `${gameBoard[row - i][col]}`;
+                    ship.coords[i] = `${[row - i]}-${[col]}`;
                 }
             }
         }
@@ -105,7 +106,7 @@ const GameBoard = () => {
             alert('You already shot here');
         } else if (gameBoard[coordA][coordB] == 'ship') {
             for (let i = 0; i < gameShips.length; i++) {
-                for (let j = 0; j < gameShips[i].coords; j++) {
+                for (let j = 0; j < gameShips[i].coords.length; j++) {
                     if (gameShips[i].coords[j] == `${coordA}-${coordB}`) {
                         gameShips[i].shipHits.push('HIT');
                         gameShips[i].checkIfSunk();
@@ -113,6 +114,8 @@ const GameBoard = () => {
                     }
                 }
             }
+            game.markHitOnBoard(coordA, coordB);
+            console.log(gameShips);
         }
     }
 
@@ -131,11 +134,17 @@ const GameBoard = () => {
         getShip,
         generateShipLocation,
         getCoords,
+        saveShips,
+
 
     }
 }
 
 const boardStuff = GameBoard();
+boardStuff.getShip(3);
+boardStuff.getShip(3);
+
+
 
 export {
     Ship,

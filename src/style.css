@@ -7,7 +7,7 @@
 #board {
     width: 500px;
     height: 500px;
-    border: 2px solid black;
+    border: 1px solid black;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat((10, 1fr));
@@ -15,6 +15,10 @@
 
 .cell {
     border: 1px solid black;
+    text-align: center;
+    resize: none;
+    height: 48px;
+    width: 48px;
 }
 
 .cell:hover {
